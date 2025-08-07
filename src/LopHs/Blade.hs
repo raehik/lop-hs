@@ -1,13 +1,16 @@
 module LopHs.Blade where
 
+-- | Elemental damage type.
+data Element = Electric | Fire | Acid
+
+-- | Blade damage.
+data Damage i = Damage
+  { physical :: i
+  , elemental :: Maybe (Element, i)
+  }
+
 -- | Physical damage subtype.
 data PhysSubtype = Slash | Blunt | Pierce
-
--- | Damage type. (Doesn't include physical subtype.)
-data DamageType = Physical | Elemental Element
-
--- | Elemental damage types.
-data Element = Electric | Fire | Acid
 
 -- | Attributes for a given motion on a given blade.
 data MotionAttr i = MotionAttr
@@ -16,14 +19,8 @@ data MotionAttr i = MotionAttr
   }
 
 data MotionAttrs i = MotionAttrs
-  { swingAttrs  :: MotionAttr i
-  , thrustAttrs :: MotionAttr i
-  }
-
--- | Blade (base) damage.
-data Damage i = Damage
-  { physical :: i
-  , elemental :: Maybe (Element, i)
+  { swingAttrs  :: MotionAttr i -- | Attributes for  swing motions.
+  , thrustAttrs :: MotionAttr i -- | Attributes for thrust motions.
   }
 
 -- Note that durability increases the same (so special weapons get less).
@@ -32,6 +29,18 @@ data UpgradeType
   = CommonConstant -- +1000,       max +10 (10000)
   | CommonLinear   -- +1000->1175, max +10 (11220)
   | Special        -- +2200,       max + 5 (11000)
+
+-- | Animation speed (and other) modifiers.
+data AnimModifiers i = AnimModifiers
+  { knockbackDistRatio :: i -- base 300
+  , hitstunDurRatio    :: i -- base 1000, internally @_hit_anim_duration_ratio@
+
+  -- all play rates are base 1.0 (seen on Puppet's Saber)
+  , animPlayRateIntro  :: Float
+  , animPlayRateCharge :: Float
+  , animPlayRateSwing  :: Float
+  -- delay rate is always equal to charge, so ignore
+  }
 
 data Blade i = Blade
   -- displayed in status menu
@@ -50,6 +59,8 @@ data Blade i = Blade
   -- not displayed in status menu
   , perfectGuardDecEnemyDur :: i
   , attackSpeed :: i -- exists & seems used for both blades and handles!
+  , staminaConsumeRatio :: i -- in @_BladeWeight_array@
+  , animModifiers :: AnimModifiers
 
   -- idk
   , guardPoint :: i -- ???
@@ -63,4 +74,10 @@ data UpgradeLevel
 data BladeInstance i = BladeInstance
   { blade :: Blade i
   , upgrade :: Maybe UpgradeLevel
+  }
+
+-- | A hit: damage, plus the subtype of the physical component.
+data Hit i = Hit
+  { physSubtype :: PhysSubtype
+  , damage :: Damage i
   }

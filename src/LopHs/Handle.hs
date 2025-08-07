@@ -16,12 +16,11 @@ data HandleShape = ShortGrip | MidGrip | LongGrip | ShortShaft | LongShaft
 
 data Handle i = Handle
   { weight :: i
-  , staminaConsumeRatio :: i
   , guardStaminaReductionRatio :: i
   , attackSpeed :: i
   , guardPoint :: i -- meaning?
   , -- perfectGuardDecEnemyDur always = 45-- assume placeholder, diff for blades
-  , statScaling :: Scaling
+  , scaling :: Scaling
   , motions :: Motions
   , shape :: HandleShape
   }
