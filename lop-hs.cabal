@@ -1,0 +1,54 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.36.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           lop-hs
+version:        0.1.0
+synopsis:       TODO
+description:    Please see README.md.
+category:       _
+homepage:       https://github.com/raehik/lop-hs#readme
+bug-reports:    https://github.com/raehik/lop-hs/issues
+author:         Ben Orchard
+maintainer:     Ben Orchard <thefirstmuffinman@gmail.com>
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+tested-with:
+    GHC == 9.12
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/raehik/lop-hs
+
+library
+  exposed-modules:
+      LopHs.Blade
+      LopHs.Blade.Vanilla
+      LopHs.Handle
+      LopHs.Handle.Cranks
+      LopHs.Weapon
+  other-modules:
+      Paths_lop_hs
+  hs-source-dirs:
+      src
+  default-extensions:
+      LambdaCase
+      NoStarIsType
+      DerivingVia
+      DeriveAnyClass
+      GADTs
+      RoleAnnotations
+      DefaultSignatures
+      TypeFamilies
+      DataKinds
+      MagicHash
+  ghc-options: -fhide-source-paths -Wall -fno-show-error-context
+  build-depends:
+      base
+  default-language: GHC2021
