@@ -1,6 +1,8 @@
 module LopHs.Handle where
 
-data Grade = S | A | B | C | D
+import LopHs.Handle.Scaling
+import Data.Vector.Unboxed qualified as VU
+
 data ScalingStat = Mot | Tech | Adv
 
 data Scaling = Scaling
@@ -10,26 +12,25 @@ data Scaling = Scaling
   }
 
 -- @_have_swing_motion@ and @_have_thrust_motion@ in @ItemInfo.json@
-data Motions = Slash | Stab | SlashAndStab
+data Motions = Swings | Thrusts | SwingsAndThrusts
 
 data HandleShape = ShortGrip | MidGrip | LongGrip | ShortShaft | LongShaft
 
 data Handle i = Handle
   { weight :: i
-  , guardStaminaReductionRatio :: i
-  , attackSpeed :: i
-  , guardPoint :: i -- meaning?
-  , -- perfectGuardDecEnemyDur always = 45-- assume placeholder, diff for blades
   , scaling :: Scaling
   , motions :: Motions
   , shape :: HandleShape
+  , guardStaminaReductionRatio :: i
   }
 
-  , staminaConsumeRatio = 906 -- ItemInfo.json#L51168
-  , shapeType = ShortGrip
-  , guardStaminaReductionRatio = 4087
-  , attackSpeed = 75
-  , postureType
-
-
---Grade -> Ratio
+-- level MUST be between 1-99
+getScaling :: Num i => ScalingStat -> Int -> Handle i -> i
+getScaling stat lvl hdl =
+    case statGrade (Handle.scaling hdl) of
+      Just grade -> scalingTable VU.! (lvl+lvlMod) * gradeMultFloat grade
+      -- ^ TODO need to coerce here. bad anyway, should use ratios
+      Nothing    -> 0
+  where
+    (statGrade, lvlMod) =
+        case stat of Mot -> (mot, (-4)); Tech -> (tech, (-4)); Adv -> (adv, 0)
