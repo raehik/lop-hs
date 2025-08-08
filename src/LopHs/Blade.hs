@@ -23,7 +23,8 @@ data MotionAttrs i = MotionAttrs
   , thrustAttrs :: MotionAttr i -- | Attributes for thrust motions.
   }
 
--- Note that durability increases the same (so special weapons get less).
+-- Durability gets +5% base each level (+10% for boss).
+-- (see @_sharpness_fine_point_mod@, no special cases)
 -- All attack mods are always updated together (phys + all 3 elems).
 data UpgradeType
   = CommonConstant -- +1000,       max +10 (10000)
