@@ -154,17 +154,21 @@ in
 , blade "big-wrench"          "ClockworkBlunt"
     170 11695 7392 25 MoonLinearDec
     (dmgNonElem 156)
-    (animMod 350 1297 0.68369734 0.7884787 0.86710954)
+    (animMod 350 1297 0.68369734 0.7884787  0.86710954)
     (motions Strike 10000 Strike  8000)
 
 , blade "electric-coil-stick" "CoilRod"
-    90 10000 5488 18 MoonConstant
+     90 10000 5488 18 MoonConstant
     (dmgElem 60 Electric 56)
     (animMod 300 1082 0.8865389  0.92749405 0.95584327)
     (motions Strike 10000 Strike  8000)
 
--- , blade "shovel" "Shovel"
---   _ MoonConstant
+-- 1.0x Slash on swings and thrust!
+, blade "shovel" "Shovel"
+     99 11695 5725 21 MoonConstant
+    (dmgNonElem 119)
+    (animMod 300 1229 0.81922877 0.8828324  0.9279551)
+    (motions Slash  10000 Slash  10000)
 
 -- Pierce on swing! Anim mods seem wrong, perhaps it got buffed.
 , blade "exploding-pickaxe"   "FirePickaxe"
@@ -173,7 +177,11 @@ in
     (animMod 300 1333 0.65884405 0.7704406  0.8551523)
     (motions Pierce 10000 Strike  6000)
 
--- Black Steel Cutter, FlameSword, MoonConstant
+, blade "black-steel-cutter"  "FlameSword"
+    104 10000 5867 21 MoonConstant
+    (dmgElem 67 Fire 65)
+    (animMod 300 1140 0.81922877 0.8828324  0.9279551)
+    (motions Slash  10000 Strike  6000)
 
 , blade "shield-spear"        "ShieldSpear"
      76  8396 5397 17 MoonConstant
@@ -181,7 +189,12 @@ in
     (animMod 300  980 0.97929955 0.9870115 0.99218655)
     (motions Slash   8000 Pierce 10000)
 
--- CrystalSpear
+-- Identical stamina & speed to Puppet's Saber.
+, blade "acid-spear"          "CrystalSpear"
+     64 10000 4714 16 MoonConstant
+    (dmgElem 57 Acid 51)
+    (animMod 300 1000 1.0        1.0        1.0)
+    (motions Slash   6000 Pierce 10000)
 
 -- Hwando (Two Dragons)
 
@@ -193,9 +206,21 @@ in
     (animMod 300 1194 0.76809794 0.84797955 0.9057977)
     (motions Slash  10000 Strike  6000)
 
--- RockDrill, MoonConstant
+-- Cute to see that swings are Strike lol (0.6x though).
+-- Has crit (30%).
+-- I don't really get it. The other thrust-only daggers are so, so much better.
+, blade "pistol-rock-drill"   "RockDrill"
+    105 11695 5278 22 MoonConstant
+    (dmgNonElem 108)
+    (animMod 300 1111 0.85322046 0.9055518  0.94221056)
+    (motions Strike  6000 Pierce 10000)
 
--- Halberd, MoonConstant
+-- Crappy damage. Unimpressed, but not really played around with.
+, blade "halberd"             "Halberd"
+     99 10000 5724 22 MoonConstant
+    (dmgNonElem 112)
+    (animMod 300 1081 0.8865389  0.92749405 0.95584327)
+    (motions Slash  10000 Pierce 10000)
 
 , blade "coil-mjolnir"        "ElectricHammer"
     159 10000 7147 25 MoonConstant
@@ -203,11 +228,25 @@ in
     (animMod 300 1351 0.6483753  0.76276636 0.8500313)
     (motions Strike 10000 Strike  6000)
 
--- ChainScythe
+-- The decent damage makes this weapon feel great. Well balanced.
+, blade "puppet-ripper"       "ChainScythe"
+    126 10000 5177 21 DarkmoonConstant
+    (dmgNonElem 138)
+    (animMod 300 1130 0.7397073  0.8282519  0.8930946)
+    (motions Slash  10000 Pierce  8000)
 
--- CrystalSword
+, blade "frozen-feast"        "CrystalSword"
+    239  8396 7000 27 DarkmoonConstant
+    (dmgNonElem 167)
+    (animMod 300 1417 0.5389566  0.6795495  0.79310864)
+    (motions Slash  10000 Pierce  8000)
 
--- SwordLance, MoonConstant
+-- Sensible. Very long, likes swings and thrusts, decent speed. Simply great.
+, blade "spear-of-honor"      "SwordLance"
+    107 11695 5945 23 MoonConstant
+    (dmgNonElem 124)
+    (animMod 300 1257 0.796148   0.8672037  0.9180634)
+    (motions Slash  10000 Pierce 10000)
 
 -- Notably slow. Largely beaten by shield spear. Has improved upgrades I guess.
 , blade "city-longspear"      "GreatSpear"
@@ -216,7 +255,11 @@ in
     (animMod 300 1098 0.8232657  0.88554883 0.9296672)
     (motions Slash   8000 Pierce 10000)
 
--- ElectricCutter, MoonConstant
+, blade "electric-chainsaw"   "ElectricCutter"
+    133 10000 6569 24 MoonConstant
+    (dmgElem 68 Electric 61)
+    (animMod 300 1289 0.6909564  0.7937005  0.8705506)
+    (motions Slash  10000 Slash   8000)
 
 , blade "acidic-cgs"          "AcidGreatsword"
     129 10000 6475 23 MoonLinearInc
@@ -224,9 +267,19 @@ in
     (animMod 300 1335 0.65884405 0.7704406  0.8551523)
     (motions Slash  10000 Pierce  8000)
 
--- ClockSword, MoonConstant
+-- Comparable to Puppet's Saber with 1.0x for thrusts.
+, blade "clock-sword"         "ClockSword"
+     76 10000 5081 17 MoonConstant
+    (dmgNonElem 114)
+    (animMod 300 1014 0.97929955 0.9870115  0.99218655)
+    (motions Slash  10000 Pierce 10000)
 
--- CrystalAxe, MoonConstant
+-- TODO don't have. Seems like slightly poor dmg with great guard/stam/speed.
+, blade "carcass-axe"         "CrystalAxe"
+    120 10000 6612 20 MoonConstant
+    (dmgElem 64 Acid 63)
+    (animMod 300 1164 0.7582895  0.8411954  0.90144277)
+    (motions Slash  10000 Strike  6000)
 
 , blade "salamander-dagger"   "FlameDagger"
      66 10000 4555 14 MoonConstant
