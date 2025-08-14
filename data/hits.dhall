@@ -54,4 +54,6 @@ The stamina consumption of a hitbox is
     blade._consume_stamina_point * hit._consume_stamina_ratio
 
 Remember charge attack stamina is reduced by a P-Organ upgrade.
+
+Most CR2s do ~2.0x total.
 -}

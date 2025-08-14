@@ -20,17 +20,6 @@ let Swings  = Motions.swings
 let Thrusts = Motions.thrusts
 let SwiThr  = Motions.swingsAndThrusts
 
-let FableArt =
-      < concentrate | guardParry | absoluteDefense | endure | furiousSlash
-      | strikeChance | quickStab >
-let Concentrate     = FableArt.concentrate
-let GuardParry      = FableArt.guardParry
-let AbsoluteDefense = FableArt.absoluteDefense
-let Endure          = FableArt.endure
-let FuriousSlash    = FableArt.furiousSlash
-let StrikeChance    = FableArt.strikeChance
-let QuickStab       = FableArt.quickStab
-
 let handle =
          \(id : Text)
       -> \(internalId : Text)
@@ -53,9 +42,10 @@ in
 "ratio" refers to hit damage : stamina MVs. 1:1 is a good ratio.
 High damage hits tend to have higher stamina consumption e.g. 2:3.
 "very short": only a few fingers between top of thumb and top of handle
-"short":      about    1/2 hand
+     "short": about    1/2 hand
 "short-med":  about      1 hand
 "med-long":   about      3 hands
+    "long":   about      5 hands
 -}
 
 [ handle "puppet-saber"        "Saber" -- sabre for non-Americans
@@ -137,13 +127,30 @@ Great , but can't figure out how best to use. Long sword handles, perhaps? -}
 {- Multi-hits in R1 3 and CR2, sensible for crit consistency.
 I prefer heavy high-range thrusts over fast short, but it's admittedly fine. -}
 
-{-
 , handle "dancers-curved"      "Shamshir"
     27 Swings  (scaleMT  C B) GuardParry
--}
+    "short"
+    62
 {- Best scaling non-DLC, non-elemental assembly handle (C/B/-).
-TODO really cool swings
+R1s are extremely active horizontal swings, catching like 270 degrees frontal.
+R2s are fairly fast and gap close. Tap R2 1 is fast but meh ratio of 1.87:1.2 .
+CR2s are 2-hit, with great ratios on hit 2: 1.58:2.04, 1.71:2.28
+Boring dashes & dodges, useless Fable Art. Stops short of being great. -}
+
+, handle "big-wrench"          "ClockworkBlunt"
+    68 Swings  (scaleMT  B D) PaybackSwing
+    "long"
+    68
+{- Slow, frustrating moveset with a multi-hit CR2. Also limited, 2 R1s and 1 R2.
+Payback Swing is excellent on heavy blades, some of the best damage in the game.
+But it doesn't stagger, and without a convenient CR2, it just feels incomplete.
+Still, CR2 has some gap close.
+Extremely high base damage MVs, R1s are 1.4:1.8 -> 1.5:2.0 lol.
+Weirdly good dodge R1 at 1.33:1.28...?
+Fact is, it's really good damage with a brilliant Fable Art. Stick a long
+med-heavy blade like the Acidic CGS on and you have a real weapon.
 -}
+
 
 {-
 , handle "electric-coil-stick" "CoilRod"
